@@ -1,0 +1,4 @@
+Pillow
+python-forecastio
+spidev
+RPi.GPIO
