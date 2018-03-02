@@ -71,7 +71,7 @@ def loop(draw_target):
     temp_width, temp_height = TEMP_FONT.getsize("-10.0°C")
 
     def draw_temp():
-        temp: Optional[float] = None
+        temp = None
         try:
             lines = _telnet_get("ente.hawo.stw.uni-erlangen.de", 7337).splitlines()
             temp = float(re.match(r"^(.+?)°C.*", lines[0]).group(1))
@@ -90,7 +90,7 @@ def loop(draw_target):
     co2_width, co2_height = CO2_FONT.getsize("2000ppm")
 
     def draw_co2():
-        data: Optional[dict] = None
+        data = None
         try:
             response = requests.request("GET", "http://127.0.0.1:8000")
             if response.status_code == 200:

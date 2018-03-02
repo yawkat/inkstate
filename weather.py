@@ -39,7 +39,7 @@ def _pseudo_permute(value: int, limit: int):
     assert 0 <= value < limit
     if limit not in _pseudo_permute_cache:
         _pseudo_permute_cache[limit] = list(range(limit))
-        rng: random.Random = random.Random()
+        rng = random.Random()
         rng.seed(0)
         rng.shuffle(_pseudo_permute_cache[limit])
     return _pseudo_permute_cache[limit][value]
