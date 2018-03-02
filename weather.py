@@ -9,8 +9,8 @@ from PIL import Image, ImageDraw, ImageFont
 
 from util import draw_text_relative
 
-SCALE_FONT = ImageFont.truetype("/usr/share/fonts/TTF/DroidSans.ttf", size=10)
-NOTE_FONT = ImageFont.truetype("/usr/share/fonts/TTF/DroidSans.ttf", size=25)
+SCALE_FONT = ImageFont.truetype("/usr/share/fonts/truetype/noto/NotoSans-Regular.ttf", size=10)
+NOTE_FONT = ImageFont.truetype("/usr/share/fonts/truetype/noto/NotoSans-Regular.ttf", size=25)
 
 PERCIP_RANGE = 5
 MIN_TEMP_RANGE = 15  # degrees
