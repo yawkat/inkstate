@@ -13,7 +13,7 @@ import weather
 
 print("Loading fonts")
 
-PATH_DROID_SANS = "/usr/share/fonts/truetype/noto/NotoSans-Regular.ttf"
+PATH_DROID_SANS = "/usr/share/fonts/TTF/DroidSans.ttf"
 
 TIME_FONT = ImageFont.truetype(PATH_DROID_SANS, size=50)
 TEMP_FONT = ImageFont.truetype(PATH_DROID_SANS, size=40)
