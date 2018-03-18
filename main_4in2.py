@@ -6,6 +6,7 @@ from PIL import Image
 
 import draw
 import epd4in2
+import time
 
 print("Starting up EPD 4.2in")
 
@@ -19,6 +20,7 @@ height = 300
 class DrawTarget:
     def __init__(self):
         self.buffer = Image.new("1", (width, height), 1)
+        self._last_full_refresh = -1
 
     def draw(self, image: Image, x: int = 0, y: int = 0):
         assert image.width + x <= 400
@@ -26,7 +28,14 @@ class DrawTarget:
         self.buffer.paste(image, (x, y))
 
     def flush(self):
-        _display_frame_quick(epd.get_frame_buffer(self.buffer))
+        frame_buffer = epd.get_frame_buffer(self.buffer)
+        t = int(time.time() / (60 * 60 * 24))
+        print(t)
+        if t > self._last_full_refresh:
+            self._last_full_refresh = t
+            epd.display_frame(frame_buffer)
+        else:
+            _display_frame_quick(frame_buffer)
 
 
 def _display_frame_quick(frame_buffer):
