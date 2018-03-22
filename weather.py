@@ -155,8 +155,11 @@ def draw_cloud_cover(graph_x, shown_points):
     for point in shown_points:
         point_start = int(graph_x(point.time - datetime.timedelta(minutes=30)))
         point_end = int(graph_x(point.time + datetime.timedelta(minutes=30)))
+        cloud_cover = 1
+        if "cloudCover" in point.d:
+            cloud_cover = point.cloudCover
         cloud_cover_draw.rectangle(((point_start, 0), (point_end, CLOUD_COVER_HEIGHT)),
-                                   fill=(int(255 * (1 - point.cloudCover))))
+                                   fill=(int(255 * (1 - cloud_cover))))
     del cloud_cover_draw
     return cloud_cover_image.convert("1", dither=Image.FLOYDSTEINBERG)
 
