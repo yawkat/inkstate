@@ -86,8 +86,18 @@ def draw_forecast(draw_target):
     temp_scale = 1 / temp_range
 
     # draw precipitation
-    plot_area_draw.polygon([graph_point(point.time, point.precipIntensity * percip_scale)
-                            for point in shown_points] + [graph_point(end, 0), graph_point(now, 0)], fill='#000000')
+    for i in range(0, len(shown_points)):
+        mid_x = graph_x(shown_points[i].time)
+        if i == 0:
+            start_x = graph_x(now)
+        else:
+            start_x = (graph_x(shown_points[i - 1].time) + mid_x) / 2
+        if i == len(shown_points) - 1:
+            end_x = graph_x(end)
+        else:
+            end_x = (graph_x(shown_points[i + 1].time) + mid_x) / 2
+        plot_area_draw.rectangle(
+            ((start_x, graph_y(shown_points[i].precipIntensity * percip_scale)), (end_x, graph_y(0))), fill='#000000')
     # draw dew point
     plot_area_draw.line([graph_point(point.time, (point.dewPoint - temp_base) * temp_scale) for point
                          in shown_points], width=1, fill='#000000')
