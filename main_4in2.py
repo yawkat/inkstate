@@ -29,7 +29,7 @@ class DrawTarget:
 
     def flush(self):
         frame_buffer = epd.get_frame_buffer(self.buffer)
-        t = int(time.time() / (60 * 60 * 24))
+        t = int(time.time() / (30 * 60))
         print(t)
         if t > self._last_full_refresh:
             self._last_full_refresh = t
